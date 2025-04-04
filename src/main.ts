@@ -1,24 +1,24 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { metamask } from './metamask.ts'
+import { State } from './state.ts'
+import { sign } from './sign.ts'
+import { signTyped } from './sign-typed.ts'
+
+const state: State = new State()
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
+    <h1>Metamask</h1>
     <div class="card">
-      <button id="counter" type="button"></button>
+      <button id="metamask" type="button">Connect</button>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
+    <div class="card">
+      <button id="sign" type="button">Sign</button>
+      <button id="sign-typed" type="button">Sign Typed</button>
+    </div>
   </div>
 `
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+metamask(document.querySelector<HTMLButtonElement>('#metamask')!, state)
+sign(document.querySelector<HTMLButtonElement>('#sign')!, state)
+signTyped(document.querySelector<HTMLButtonElement>('#sign-typed')!, state)
